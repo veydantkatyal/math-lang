@@ -37,3 +37,7 @@ The MathLang Compiler is an end-to-end compiler designed for scientific computin
 1. Test cases can be found in the tests/test_cases/ directory. To run a test case:
     ```bash
     ./mathlang < tests/test_cases/test1.ml
+
+## LICENSE
+This is project is licensed under [MIT License](https://github.com/veydantkatyal/math-lang/blob/main/LICENSE), please go through it carefully, before using it.
+
