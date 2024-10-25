@@ -14,7 +14,7 @@ The MathLang Compiler is an end-to-end compiler designed for scientific computin
 ### Local Installation
 1. Clone the repository:
    ```bash
-   git clone https://github.com/username/MathLangCompiler.git
+   git clone https://github.com/veydantkatyal/math-lang.git
 2. Install the dependencies(on Ubuntu):
     ```bash
     sudo apt-get install flex bison gcc make
