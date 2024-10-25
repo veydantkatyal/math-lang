@@ -1,0 +1,2 @@
+Error: Incomplete expression at line 2
+Error: Variable z not declared at line 4

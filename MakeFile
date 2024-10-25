@@ -1,0 +1,63 @@
+# Compiler settings
+CC = gcc
+CFLAGS = -Wall -g
+
+# Source directories
+LEXER_DIR = src/lexer
+PARSER_DIR = src/parser
+SEMANTIC_DIR = src/semantic
+IR_DIR = src/ir
+OPTIMIZER_DIR = src/optimization
+CODEGEN_DIR = src/codegen
+MAIN_DIR = src
+
+# Object files
+OBJS = $(LEXER_DIR)/lexer.o \
+       $(PARSER_DIR)/parser.o \
+       $(SEMANTIC_DIR)/semantic.o \
+       $(IR_DIR)/ir.o \
+       $(OPTIMIZER_DIR)/optimizer.o \
+       $(CODEGEN_DIR)/codegen.o \
+       $(MAIN_DIR)/main.o
+
+# Build the MathLang compiler
+all: mathlang
+
+mathlang: $(OBJS)
+	$(CC) $(CFLAGS) -o mathlang $(OBJS)
+
+# Compile lexer
+$(LEXER_DIR)/lexer.o: $(LEXER_DIR)/lexer.l
+	flex -o $(LEXER_DIR)/lexer.c $(LEXER_DIR)/lexer.l
+	$(CC) $(CFLAGS) -c -o $(LEXER_DIR)/lexer.o $(LEXER_DIR)/lexer.c
+
+# Compile parser
+$(PARSER_DIR)/parser.o: $(PARSER_DIR)/parser.y
+	yacc -d -o $(PARSER_DIR)/parser.c $(PARSER_DIR)/parser.y
+	$(CC) $(CFLAGS) -c -o $(PARSER_DIR)/parser.o $(PARSER_DIR)/parser.c
+
+# Compile semantic analysis
+$(SEMANTIC_DIR)/semantic.o: $(SEMANTIC_DIR)/semantic.c
+	$(CC) $(CFLAGS) -c -o $(SEMANTIC_DIR)/semantic.o $(SEMANTIC_DIR)/semantic.c
+
+# Compile intermediate representation (IR)
+$(IR_DIR)/ir.o: $(IR_DIR)/ir.c
+	$(CC) $(CFLAGS) -c -o $(IR_DIR)/ir.o $(IR_DIR)/ir.c
+
+# Compile optimizer
+$(OPTIMIZER_DIR)/optimizer.o: $(OPTIMIZER_DIR)/optimizer.c
+	$(CC) $(CFLAGS) -c -o $(OPTIMIZER_DIR)/optimizer.o $(OPTIMIZER_DIR)/optimizer.c
+
+# Compile code generator
+$(CODEGEN_DIR)/codegen.o: $(CODEGEN_DIR)/codegen.c
+	$(CC) $(CFLAGS) -c -o $(CODEGEN_DIR)/codegen.o $(CODEGEN_DIR)/codegen.c
+
+# Compile main program
+$(MAIN_DIR)/main.o: $(MAIN_DIR)/main.c
+	$(CC) $(CFLAGS) -c -o $(MAIN_DIR)/main.o $(MAIN_DIR)/main.c
+
+# Clean build files
+clean:
+	rm -f $(OBJS) mathlang lex.yy.c y.tab.c y.tab.h
+
+.PHONY: all clean

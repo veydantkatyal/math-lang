@@ -1,0 +1,14 @@
+# Benchmark Results
+
+Matrix Multiplication (3x3):
+Time Taken: 0.002 seconds
+
+Matrix Multiplication (100x100):
+Time Taken: 2.35 seconds
+
+Loop Summation (1 to 1,000,000):
+Time Taken: 0.1 seconds
+
+Nested Loop Product (100x100):
+Time Taken: 0.45 seconds
+
